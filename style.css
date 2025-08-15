@@ -38,33 +38,56 @@ main {
     color: #a0a0a0;
 }
 
-/* START: Add these new search bar styles */
+/* START: Updated Search Bar Styles */
 #search-container {
     margin-bottom: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+#search-form {
+    position: relative; /* For positioning the icon */
+    width: 100%;
+    max-width: 600px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    pointer-events: none; /* Allows clicks to go through to the input */
+    transition: color 0.2s ease-in-out;
 }
 
 #search-container input[type="text"] {
     width: 100%;
-    max-width: 550px;
-    padding: 12px 20px;
-    font-size: 1rem;
+    padding: 16px 20px 16px 55px; /* Top, Right, Bottom, Left (space for icon) */
+    font-size: 1.1rem;
     color: #e0e0e0;
-    background-color: #1e1e1e;
-    border: 1px solid #333;
-    border-radius: 50px; /* Pill shape */
-    outline: none;
-    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
-}
-
-#search-container input[type="text"]:focus {
-    border-color: #03dac6; /* Accent color on focus */
     background-color: #2a2a2a;
+    border: 2px solid #333;
+    border-radius: 12px; /* Softer corners */
+    outline: none;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 #search-container input[type="text"]::placeholder {
     color: #888;
 }
-/* END: New search bar styles */
+
+/* Focus styles for a modern glow effect */
+#search-container input[type="text"]:focus {
+    border-color: #03dac6;
+    box-shadow: 0 0 0 4px rgba(3, 218, 198, 0.2);
+}
+
+/* Change icon color when the form is active */
+#search-form:focus-within .search-icon {
+    color: #03dac6;
+}
+/* END: Updated Search Bar Styles */
 
 /* Links Layout & Styling */
 .links-container {

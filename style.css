@@ -38,6 +38,34 @@ main {
     color: #a0a0a0;
 }
 
+/* START: Add these new search bar styles */
+#search-container {
+    margin-bottom: 3rem;
+}
+
+#search-container input[type="text"] {
+    width: 100%;
+    max-width: 550px;
+    padding: 12px 20px;
+    font-size: 1rem;
+    color: #e0e0e0;
+    background-color: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 50px; /* Pill shape */
+    outline: none;
+    transition: border-color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+}
+
+#search-container input[type="text"]:focus {
+    border-color: #03dac6; /* Accent color on focus */
+    background-color: #2a2a2a;
+}
+
+#search-container input[type="text"]::placeholder {
+    color: #888;
+}
+/* END: New search bar styles */
+
 /* Links Layout & Styling */
 .links-container {
     display: flex;

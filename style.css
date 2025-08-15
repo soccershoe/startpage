@@ -1,0 +1,77 @@
+/* Basic Reset & Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+}
+
+main {
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Welcome & Clock Styling */
+#welcome-container {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+#greeting {
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+#clock {
+    font-size: 1.5rem;
+    color: #a0a0a0;
+}
+
+/* Links Layout & Styling */
+.links-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem; /* Space between columns */
+    flex-wrap: wrap; /* Allows columns to stack on smaller screens */
+}
+
+.link-category {
+    flex: 1; /* Each category takes up equal space */
+    min-width: 150px; /* Prevents columns from getting too narrow */
+}
+
+.link-category h2 {
+    font-size: 1.25rem;
+    color: #03dac6; /* A nice accent color */
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.link-category ul {
+    list-style: none;
+}
+
+.link-category a {
+    text-decoration: none;
+    color: #e0e0e0;
+    font-size: 1rem;
+    display: block;
+    padding: 0.5rem 0;
+    transition: color 0.2s ease-in-out;
+}
+
+.link-category a:hover {
+    color: #ffffff;
+}

@@ -95,3 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000); // Update the clock every second
     setInterval(getWeather, 600000); // Update the weather every 10 minutes (600,000 ms)
 });
+
+// add the focus to the search input box when the page loads
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelector('#search-container input[name="q"]').focus();
+});

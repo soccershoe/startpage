@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- WEATHER WIDGET ---
     const weatherElement = document.getElementById('weather');
+    const forecastElement = document.getElementById('forecast');
 
     async function getWeather() {
         // Don't run if the API key is missing
@@ -85,15 +86,48 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    async function getForecast() {
+        const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`;
+        const res = await fetch(url);
+        const data = await res.json();
+
+        // Group by day
+        const days = {};
+        data.list.forEach(item => {
+            const date = new Date(item.dt * 1000);
+            const day = date.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+            if (!days[day]) days[day] = [];
+            days[day].push(item);
+        });
+
+        // Get daily averages and icons
+        const forecastHtml = Object.entries(days).slice(0, 5).map(([day, items]) => {
+            const temps = items.map(i => i.main.temp);
+            const avgTemp = Math.round(temps.reduce((a, b) => a + b, 0) / temps.length);
+            const icon = items[0].weather[0].icon;
+            const desc = items[0].weather[0].main;
+            return `
+                <div class="forecast-day">
+                    <div>${day}</div>
+                    <img src="https://openweathermap.org/img/wn/${icon}.png" alt="${desc}" title="${desc}">
+                    <div>${avgTemp}°F</div>
+                </div>
+            `;
+        }).join('');
+        forecastElement.innerHTML = `<div class="forecast-container">${forecastHtml}</div>`;
+    }
+
 
     // --- INITIALIZE ALL WIDGETS ---
     setGreeting();
     updateClock();
     getWeather(); // Fetch weather on page load
+    getForecast();
     
     // Set intervals to update the data automatically
     setInterval(updateClock, 1000); // Update the clock every second
     setInterval(getWeather, 600000); // Update the weather every 10 minutes (600,000 ms)
+    setInterval(getForecast, 600000);
 
     // Set focus to the search input box
     document.querySelector('#search-container input[name="q"]').focus();
